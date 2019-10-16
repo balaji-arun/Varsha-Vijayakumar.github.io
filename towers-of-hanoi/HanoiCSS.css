@@ -1,0 +1,137 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+h1{
+    margin: 65px auto;
+    text-align: center;
+    background-image: url("miami.jpg");
+}
+.box1
+{
+width: 205px;
+height: 60px;
+border-radius: 10px;
+z-index: 2;
+position: absolute;
+}
+#id1{
+width: 205px;
+height: 60px;
+border-radius: 10px;
+z-index: 2;
+position: absolute;
+top: 420px;
+left: 75px;
+}
+.box2
+{
+width: 150px;
+height: 60px;
+border-radius: 10px;
+z-index: 2;
+position: absolute;
+}
+#id2{
+    width: 150px;
+height: 60px;
+border-radius: 10px;
+z-index: 2;
+position: absolute;
+top: 360px;
+left:102px;
+}
+.box3
+{
+    width: 95px;
+height: 60px;
+border-radius: 10px;
+z-index: 2;
+position: absolute;
+}
+#id3{
+    width: 95px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 300px;
+    left: 130px;
+}
+#tempp
+{
+    width: 205px;
+    height: 60px;
+    border-radius: 10px;
+    margin:  auto;
+}
+#p1{
+    float: left;
+    width: 30%;
+    z-index: 1;
+    
+}
+#p2{
+    float: left;
+    width: 30%;
+    z-index: 1;
+}
+#p3{
+    width: 30%;
+    z-index: 1;
+}
+#id4{
+    width: 205px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 420px;
+    left: 440px;
+    }
+    #id5{
+        width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 360px;
+    left:470px;
+    }  
+    #id6{
+        width: 95px;
+        height: 60px;
+        border-radius: 10px;
+        z-index: 2;
+        position: absolute;
+        top: 300px;
+        left: 495px;
+    }
+    #id7{
+    width: 205px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 420px;
+    left: 805px;
+    }
+    #id8{
+        width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    z-index: 2;
+    position: absolute;
+    top: 360px;
+    left:835px;
+
+    } 
+    #id9{
+        width: 95px;
+        height: 60px;
+        border-radius: 10px;
+        z-index: 2;
+        position: absolute;
+        top: 300px;
+        left: 860px;
+    }
