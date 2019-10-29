@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/Varsha-Vijayakumar.github.io/static/js/main.454885bb.chunk.js",
+    "main.js.map": "/Varsha-Vijayakumar.github.io/static/js/main.454885bb.chunk.js.map",
+    "runtime-main.js": "/Varsha-Vijayakumar.github.io/static/js/runtime-main.33e388b8.js",
+    "runtime-main.js.map": "/Varsha-Vijayakumar.github.io/static/js/runtime-main.33e388b8.js.map",
+    "static/css/2.510409cd.chunk.css": "/Varsha-Vijayakumar.github.io/static/css/2.510409cd.chunk.css",
+    "static/js/2.2ca96c1b.chunk.js": "/Varsha-Vijayakumar.github.io/static/js/2.2ca96c1b.chunk.js",
+    "static/js/2.2ca96c1b.chunk.js.map": "/Varsha-Vijayakumar.github.io/static/js/2.2ca96c1b.chunk.js.map",
+    "index.html": "/Varsha-Vijayakumar.github.io/index.html",
+    "precache-manifest.6f5342b4a2d0243a5254a3f3a48f2854.js": "/Varsha-Vijayakumar.github.io/precache-manifest.6f5342b4a2d0243a5254a3f3a48f2854.js",
+    "service-worker.js": "/Varsha-Vijayakumar.github.io/service-worker.js",
+    "static/css/2.510409cd.chunk.css.map": "/Varsha-Vijayakumar.github.io/static/css/2.510409cd.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33e388b8.js",
+    "static/css/2.510409cd.chunk.css",
+    "static/js/2.2ca96c1b.chunk.js",
+    "static/js/main.454885bb.chunk.js"
+  ]
+}
