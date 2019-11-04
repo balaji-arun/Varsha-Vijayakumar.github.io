@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <title>Game</title>
+   
+</head>
+<body>
+    <div id="content"></div>
+   <script>
+        function make2Darray(rows,cols){
+                var arr= new Array(rows);
+                for(var i=0;i<arr.length;i++){
+                        arr[i]=new Array(cols);
+                }
+                return arr;
+        
+        var grid;
+        var rows;
+        var cols;
+        var w=10;
+        var  totalbombs=10;
+         function  cell(){
+                 this.bomb=true;
+                 this.revealed=true;
+         }
+         function setup(){
+                 createCanvaas(401,401);
+                 rows=floor(width / w);
+                 cols=floor(height /w);
+                 grid=make2Darray(cols,rows);
+                 for(var i=0;i<rows;i++){
+                         for(var j=0;j<cols;j++){
+                                 grid[i][j]=new cell(i,j,w);
+                         }
+                 }
+                 
+         }
+         var options=[];
+         for(var i=0;i<rows;i++){
+                 for(j=0;j<cols;j++){
+                         options.push([i,j]);
+                 }
+         }
+         for(var n=0;n<totalnombs;n++){
+                 varindex=floor(random(options.length));
+                 var choice=options[index];
+                 var i=choice[0];
+                 var j=choice[1];
+                 options.splice(index,1);
+                 grid[i][j].bomb=true;
+         }
+         for(var i=0;i<rows;i++){
+                 for(var j=0;j<cols;j++){
+                         grid[i][j].countbombs();
+                 }
+         }
+}
+function click(){
+        for(var i=0;i<rows;i++){
+                for(var j=0;j<cols;j++){
+                        if(grid[i][j].contains(clickx,clicky)){
+                                grid[i][j].reveal();
+                                if(grid[i][j].bomb){
+                                        lose();
+                                }
+                        
+                        }
+                }
+        }
+}
+function draw(){
+        for(var i=0;i<rows;i++){
+                background(255);
+                for(var j=0;j<cols;j++){
+                        grid[i][j].show();
+                }
+        }
+}
+function cell(i,j,w){
+        this.i=i;
+        this.j=j;
+        this.x=i*w;
+        this.y=j*w;
+        this.w=w;
+        this.neighbourcount=0;
+        this.bomb=false;
+        this.revealed=true;
+}
+cell.prototype.show=function(){
+        stroke(0);
+        noFill();
+        rect(this.x,this.y,this.w,this.w);
+        if(this.revealed){
+                if(this.bomb){
+                        fill(127);
+                        circle(this.x + this.w*0.5 , this.y + this.w*0.5, this.w*0.5);
+                }
+                else{
+                        fill(200);
+                        rect(this.x + this.y,this.w,this.w);
+                        if(this.neighbourcount>0){
+                                textAlign(CENTER);
+                                fill(0);
+                                text(this.neighbourcount,this.x,this.w*0.5,this.y+this.w-6);
+                        }
+                }
+        }
+}
+cell.prototype.countbombs=function(){
+        if(this.bomb){
+                this.neighbourcount=-1;
+                return;
+        }
+        var total=0;
+        for(var i1=-1;i1<=1;i1++){
+                var i=this.i+i1;
+                if(i<0 || i>=rows){
+                        continue;
+                }
+                for(j1=-1;j<=1;j1++){
+                        var j=this.j+j1;
+                        if(j<0||j>=rows){
+                                continue;
+                        }
+                        var neighbour=grid[i][j];
+                        if(neighbour.bomb){
+                        total++;
+                        }
+                }
+        }
+}
+cell.prototype.contains=function(x,y){
+        return(x>this.x && x<this.x+this.w && y>this.y && this.y +this.w);
+}
+Cell.prototype.reveal = function() {
+  this.revealed = true;
+  if (this.neighbourcount == 0) {
+    this.floodFill();
+  }
+}
+   </script>
+    
+</body>
+</html>
