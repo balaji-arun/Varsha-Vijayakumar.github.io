@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+        <title>Game</title>
+    </head>
+  <body>
+      <script>
+          var grid;
+          var cols;
+          var rows;
+          var w = 40;
+          var totalbombs = 10;//global variable
+          
+    function table(cols, rows) { // this function is used to make equal number of rows and columns
+          var arr = new Array(cols);
+          for (var i = 0; i < arr.length; i++) {
+          arr[i] = new Array(rows);
+        }
+    return arr;
+}
+function setup() {   //(1)
+  createCanvas(400, 400);
+  cols = floor(width / w);
+  rows = floor(height / w);
+  grid = table(cols, rows);
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j] = new cell(i, j, w);
+    }
+  }
+    for (var n = 0; n < totalbombs; n++) {//this function is used to pick the random spots of the bomb
+    var i = floor(random(cols));
+    var j = floor(random(rows));
+    grid[i][j].bomb = true;
+  }
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j].countbombs();
+    }
+  }
+}
+          function cell(i, j, w) { // cell 
+            this.i = i;
+            this.j = j;
+            this.x = i * w;
+            this.y = j * w;
+            this.w = w;
+            this.neighbourcount = 0;
+            this.bomb = false;
+            this.revealed = false;
+        }
+cell.prototype.show = function() {//inherits the show function to reveal the cell 
+  stroke(0);
+  noFill()
+  rect(this.x, this.y, this.w, this.w);
+  if (this.revealed) {
+    if (this.bomb) {
+      circle(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5); // this line is used to make appear the circle which is bomb in the center
+    } else {
+      fill(200);//used to show the background as grey it;s not a bomb
+      rect(this.x, this.y, this.w, this.w);
+      if (this.neighbourcount > 0) { // this condtion is used to neglect 0 count 
+        fill(0);
+        text(this.neighbourcount, this.x + this.w * 0.5, this.y + this.w - 6);
+      }
+    }
+  }
+}
+cell.prototype.countbombs = function() {
+  if (this.bomb) {
+    this.neighbourcount = 0;
+    return;
+  }
+  var total = 0;
+  for (var i1 = 0; i1 <= 2; i1++) {
+    var i = this.i + i1;
+    if (i < 0 || i >= cols) {
+        continue;
+    }
+    for (var j1 =0; j1 <= 2; j1++) {
+      var j = this.j + j1;
+      if (j < 0 || j >= rows){
+          continue;
+      } 
+      var neighbor = grid[i][j];
+      if (neighbor.bomb) {
+        total++;
+      }
+    }
+  }
+  this.neighbourcount = total;
+}
+cell.prototype.contains = function(x, y) {
+  return (x > this.x && x < this.x + this.w && y > this.y && y < this.y + this.w);// this condition is used to check did the mouse click cell between x and x+w & y and y+w;
+}
+cell.prototype.reveal = function() {
+  this.revealed = true;
+}
+function lose() { // if clicked element is true then all the elements in the grid is revelaed
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j].revealed = true;
+    }
+  }
+}
+function mousePressed() {
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      if (grid[i][j].contains(mouseX, mouseY)) { //it os used to check every single click where the mouse is pressed
+        grid[i][j].reveal();
+        if (grid[i][j].bomb) {
+          lose();// calling the lose function
+        }
+      }
+    }
+  }
+}
+function draw() { 
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j].show();
+    }
+  }
+}
+      </script>
+  </body>
+</html>
